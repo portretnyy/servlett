@@ -1,3 +1,5 @@
+package ru.portretnyy;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +13,11 @@ public final class Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final String cnt = req.getParameter("cnt");
+        final long value = Long.parseLong(cnt);
         resp.setContentType("text/html");
         try(PrintWriter writer = resp.getWriter()) {
-            writer.print("<p>Hello, World!</p>");
+            writer.print(String.format("<p>%d</p>", value*value));
         }
     }
-
 }
